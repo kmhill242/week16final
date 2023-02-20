@@ -1,7 +1,27 @@
 /*import React from 'react';*/
 import "../../App.css";
 
-
-export default function Products() {
-  return <h1 className="products">Reservations</h1>;
+/*function Home() {
+  return (
+    <>
+      <HeroSection />
+      <Cards />
+      <Footer />
+     
+    </>
+  );
 }
+
+export default Home;*/
+
+/* */
+
+function Products() {
+  return (
+    <div>
+      <h1 className='products'>Reservations today </h1>
+    </div>
+  );
+}
+
+export default Products;
