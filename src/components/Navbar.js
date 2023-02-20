@@ -45,7 +45,7 @@ function Navbar() {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Services
+                Campgrounds
               </Link>
             </li>
             <li className="nav-item">
@@ -54,9 +54,10 @@ function Navbar() {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Products
+                Reservations
               </Link>
             </li>
+            
 
             <li>
               <Link

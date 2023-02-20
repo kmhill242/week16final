@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import { Button } from "./Button";
 import "./HeroSection.css";
+
 /*this function is to run a video on a loop on the main page*/
 function HeroSection() {
   return (
