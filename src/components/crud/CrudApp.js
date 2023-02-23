@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { FiRefreshCw } from "react-icons/fi";
+
 // Appointments
-class Appointment {
+/*class Appointment {
     constructor(name, date) {
       this.name = name;
       this.date = date;
@@ -145,4 +149,117 @@ class Appointment {
   }
   
   //get all appointments on first render
-  DOMManager.getAllAppointments();
+  DOMManager.getAllAppointments();*/
+
+const Reservation = () => {
+  const [text, setText] = useState("your name");
+  const [users, setUsers] = useState(null);
+
+  const submit = async () => {
+    console.log(text);
+    await axios.post(
+      "https://63dd9239df83d549cea335c5.mockapi.io/KevinsEndpoint",
+      { name: text }
+    );
+  };
+
+  const refresh = async () => {
+    let data = await axios.get(
+      "https://63dd9239df83d549cea335c5.mockapi.io/KevinsEndpoint"
+    );
+    setUsers(data);
+    console.log(data);
+  };
+
+  useEffect(() => {
+    refresh();
+  }, []);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDriection: "column",
+        width: "100vw",
+        justifyContent: "center",
+      }}
+    >
+      <button
+        onClick={() => submit()}
+        style={{
+          backgroundColor: "blue",
+          height: "10rem",
+          width: "10rem",
+        }}
+      />
+      <input
+        onChange={(e) => setText(e.target.value)}
+        value={text}
+        type="text"
+        style={{
+          backgroundColor: "red",
+          height: "10rem",
+        }}
+      />
+      <FiRefreshCw
+        color="green"
+        size={24}
+        value="refresh"
+        onClick={() => refresh()}
+        // style={{
+        //   backgroundColor: "blue",
+        //   height: "10rem",
+        //   width: "10rem",
+        // }}
+      />
+      <div>
+        <ul>
+          {users
+            ? users.data.map((user, i) => (
+                <ListValueObject
+                  key={user.id}
+                  name={user.name}
+                  id={user.id}
+                  refresh={refresh}
+                />
+              ))
+            : ""}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+const ListValueObject = ({ name, id, refresh }) => {
+  const [tempText, setTempText] = useState(name);
+  const makeChange = async (deleteObject) => {
+    if (deleteObject) {
+      await axios.delete(
+        `https://63dd9239df83d549cea335c5.mockapi.io/KevinsEndpoint/${id}`
+      );
+    } else {
+      await axios.put(
+        `https://63dd9239df83d549cea335c5.mockapi.io/KevinsEndpoint/${id}`,
+        { name: tempText }
+      );
+    }
+    refresh();
+  };
+  return (
+    <div key={id} style={{ display: "flex", flexDirection: "row" }}>
+      <input
+        type="text"
+        value={tempText}
+        onChange={(e) => setTempText(e.target.value)}
+      />
+      <button onClick={() => makeChange(false)} label="Update">
+        <p>Refresh</p>
+      </button>
+      <button onClick={() => makeChange(true)} label="delete">
+        <p>Delete</p>
+      </button>
+    </div>
+  );
+};
+
+export default Reservation;

@@ -1,9 +1,9 @@
 /*import React from 'react';*/
 import "../../App.css";
-import React, { useState, useEffect } from "react";
+/*import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import CrudApp from "./CrudApp";
+import { Link } from "react-router-dom";*/
+import CrudApp from "../crud/CrudApp";
 
 /*function Home() {
   return (
@@ -17,13 +17,6 @@ import CrudApp from "./CrudApp";
 }
 
 export default Home;*/
-function Products() {
-  return (
-    <>
-      <CrudApp />
-    </>
-  );
-}
 
 /* */
 
@@ -91,12 +84,13 @@ function Products() {
   );
 };*/
 
-/*function Products() {
+function Products() {
   return (
     <div>
-      <h1 className='products'>Reservations today </h1>
+      <h1 className="products">Reservations today </h1>
+      <CrudApp />
     </div>
   );
-}*/
+}
 
 export default Products;
