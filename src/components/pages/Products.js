@@ -4,6 +4,7 @@ import "../../App.css";
 import axios from "axios";
 import { Link } from "react-router-dom";*/
 import CrudApp from "../crud/CrudApp";
+import Footer from '../Footer';
 
 /*function Home() {
   return (
@@ -87,8 +88,9 @@ export default Home;*/
 function Products() {
   return (
     <div>
-      <h1 className="products">Reservations today </h1>
+      <h1 className="products">Make a Reservation Today </h1>
       <CrudApp />
+      <Footer />
     </div>
   );
 }
